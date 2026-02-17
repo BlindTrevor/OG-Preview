@@ -1,0 +1,6 @@
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="600" fill="#f0f0f0"/>
+  <text x="400" y="280" font-family="Arial, sans-serif" font-size="24" fill="#666" text-anchor="middle">OG Preview Settings Page</text>
+  <text x="400" y="320" font-family="Arial, sans-serif" font-size="16" fill="#999" text-anchor="middle">Screenshot Placeholder</text>
+  <text x="400" y="350" font-family="Arial, sans-serif" font-size="14" fill="#999" text-anchor="middle">Shows the plugin settings at Settings > OG Preview</text>
+</svg>
