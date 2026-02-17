@@ -1,6 +1,10 @@
 <?php
 /**
  * Test for clean_content_for_description method
+ * 
+ * NOTE: This test duplicates the cleaning logic to test it independently
+ * without requiring a full WordPress installation. In a WordPress environment,
+ * the actual implementation uses wp_strip_all_tags() which is more robust.
  */
 
 // Test content with CSS and JavaScript
@@ -31,16 +35,17 @@ $test_content = '
 </div>
 ';
 
-// Simulate the cleaning process
+// Simulate the cleaning process using WordPress-style approach
 function test_clean_content($content) {
-    // Remove style tags and their contents
-    $content = preg_replace('/<style\b[^>]*>.*?<\/style>/is', '', $content);
+    // This simulates wp_strip_all_tags behavior
+    // Remove style tags and their contents (non-greedy match)
+    $content = preg_replace('/<style[^>]*>.*?<\/style>/is', '', $content);
     
-    // Remove script tags and their contents
-    $content = preg_replace('/<script\b[^>]*>.*?<\/script>/is', '', $content);
+    // Remove script tags and their contents (non-greedy match)
+    $content = preg_replace('/<script[^>]*>.*?<\/script>/is', '', $content);
     
-    // Remove head tags and their contents
-    $content = preg_replace('/<head\b[^>]*>.*?<\/head>/is', '', $content);
+    // Remove head tags and their contents (non-greedy match)
+    $content = preg_replace('/<head[^>]*>.*?<\/head>/is', '', $content);
     
     // Strip remaining HTML tags
     $content = strip_tags($content);

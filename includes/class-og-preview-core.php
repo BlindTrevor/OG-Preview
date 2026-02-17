@@ -147,17 +147,24 @@ class OG_Preview_Core {
      * @return string Cleaned content
      */
     private function clean_content_for_description($content) {
-        // Remove style tags and their contents
-        $content = preg_replace('/<style\b[^>]*>.*?<\/style>/is', '', $content);
-        
-        // Remove script tags and their contents
-        $content = preg_replace('/<script\b[^>]*>.*?<\/script>/is', '', $content);
-        
-        // Remove head tags and their contents
-        $content = preg_replace('/<head\b[^>]*>.*?<\/head>/is', '', $content);
-        
-        // Strip remaining HTML tags
-        $content = strip_tags($content);
+        // Use WordPress's wp_strip_all_tags which handles script/style tags properly
+        // and is more robust than custom regex
+        if (function_exists('wp_strip_all_tags')) {
+            $content = wp_strip_all_tags($content, true);
+        } else {
+            // Fallback for environments where wp_strip_all_tags is not available
+            // Remove style tags and their contents (non-greedy match)
+            $content = preg_replace('/<style[^>]*>.*?<\/style>/is', '', $content);
+            
+            // Remove script tags and their contents (non-greedy match)
+            $content = preg_replace('/<script[^>]*>.*?<\/script>/is', '', $content);
+            
+            // Remove head tags and their contents (non-greedy match)
+            $content = preg_replace('/<head[^>]*>.*?<\/head>/is', '', $content);
+            
+            // Strip remaining HTML tags
+            $content = strip_tags($content);
+        }
         
         // Remove excessive whitespace
         $content = preg_replace('/\s+/', ' ', $content);
