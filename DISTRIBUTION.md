@@ -4,9 +4,9 @@
 
 This repository contains both the production-ready plugin and development documentation.
 
-### Production Plugin (`og-plugin/`)
+### Production Plugin (`og-preview/`)
 
-The `og-plugin/` directory contains **only** the files needed for the WordPress plugin. This directory is ready for distribution and can be:
+The `og-preview/` directory contains **only** the files needed for the WordPress plugin. This directory is ready for distribution and can be:
 
 1. Zipped and uploaded to WordPress
 2. Deployed directly to `/wp-content/plugins/`
@@ -40,7 +40,7 @@ The following files in the repository root are for **development purposes only**
 
 1. **Zip the plugin directory:**
    ```bash
-   cd og-plugin
+   cd og-preview
    zip -r og-preview.zip .
    ```
 
@@ -53,7 +53,7 @@ The following files in the repository root are for **development purposes only**
 
 1. **Copy the plugin directory:**
    ```bash
-   cp -r og-plugin /path/to/wordpress/wp-content/plugins/og-preview
+   cp -r og-preview /path/to/wordpress/wp-content/plugins/og-preview
    ```
 
 2. **Activate in WordPress:**
@@ -62,7 +62,7 @@ The following files in the repository root are for **development purposes only**
 
 ### For WordPress Plugin Repository
 
-The `og-plugin/` directory structure is ready for submission to the WordPress plugin repository as-is.
+The `og-preview/` directory structure is ready for submission to the WordPress plugin repository as-is.
 
 ## Files Included in Distribution
 
@@ -95,7 +95,7 @@ The `og-plugin/` directory structure is ready for submission to the WordPress pl
 
 ## Production Readiness
 
-The plugin in `og-plugin/` has been validated for production:
+The plugin in `og-preview/` has been validated for production:
 - ✅ All PHP files pass syntax validation
 - ✅ No debug logging in production (respects WP_DEBUG)
 - ✅ Code review passed (0 issues)
@@ -108,4 +108,4 @@ The plugin in `og-plugin/` has been validated for production:
 
 For development documentation and API reference, see `DEVELOPER.md` in the repository root.
 
-For user documentation, see the files in `og-plugin/`.
+For user documentation, see the files in `og-preview/`.
