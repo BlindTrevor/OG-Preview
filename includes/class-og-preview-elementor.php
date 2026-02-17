@@ -9,10 +9,15 @@ if (!defined('ABSPATH')) {
 
 class OG_Preview_Elementor {
     
+    /**
+     * Core instance
+     * 
+     * @var OG_Preview_Core
+     */
     private $core;
     
     public function __construct() {
-        $this->core = new OG_Preview_Core();
+        $this->core = OG_Preview_Core::get_instance();
         
         // Check if Elementor is active
         add_action('elementor/editor/before_enqueue_scripts', array($this, 'enqueue_elementor_scripts'));

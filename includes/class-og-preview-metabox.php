@@ -9,10 +9,15 @@ if (!defined('ABSPATH')) {
 
 class OG_Preview_Metabox {
     
+    /**
+     * Core instance
+     * 
+     * @var OG_Preview_Core
+     */
     private $core;
     
     public function __construct() {
-        $this->core = new OG_Preview_Core();
+        $this->core = OG_Preview_Core::get_instance();
         
         add_action('add_meta_boxes', array($this, 'add_meta_box'));
         add_action('admin_enqueue_scripts', array($this, 'enqueue_scripts'));

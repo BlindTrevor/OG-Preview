@@ -29,12 +29,74 @@ require_once OG_PREVIEW_PLUGIN_DIR . 'includes/class-og-preview-admin.php';
 require_once OG_PREVIEW_PLUGIN_DIR . 'includes/class-og-preview-metabox.php';
 require_once OG_PREVIEW_PLUGIN_DIR . 'includes/class-og-preview-elementor.php';
 
+/**
+ * Main plugin class
+ */
+class OG_Preview_Plugin {
+    
+    /**
+     * Single instance of the plugin
+     */
+    private static $instance = null;
+    
+    /**
+     * Plugin instances
+     */
+    private $admin;
+    private $metabox;
+    private $elementor;
+    
+    /**
+     * Get singleton instance
+     */
+    public static function get_instance() {
+        if (null === self::$instance) {
+            self::$instance = new self();
+        }
+        return self::$instance;
+    }
+    
+    /**
+     * Private constructor
+     */
+    private function __construct() {
+        $this->init();
+    }
+    
+    /**
+     * Initialize plugin
+     */
+    private function init() {
+        $this->admin = new OG_Preview_Admin();
+        $this->metabox = new OG_Preview_Metabox();
+        $this->elementor = new OG_Preview_Elementor();
+    }
+    
+    /**
+     * Get admin instance
+     */
+    public function get_admin() {
+        return $this->admin;
+    }
+    
+    /**
+     * Get metabox instance
+     */
+    public function get_metabox() {
+        return $this->metabox;
+    }
+    
+    /**
+     * Get elementor instance
+     */
+    public function get_elementor() {
+        return $this->elementor;
+    }
+}
+
 // Initialize the plugin
 function og_preview_init() {
-    $og_preview_core = new OG_Preview_Core();
-    $og_preview_admin = new OG_Preview_Admin();
-    $og_preview_metabox = new OG_Preview_Metabox();
-    $og_preview_elementor = new OG_Preview_Elementor();
+    return OG_Preview_Plugin::get_instance();
 }
 add_action('plugins_loaded', 'og_preview_init');
 

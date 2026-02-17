@@ -9,8 +9,28 @@ if (!defined('ABSPATH')) {
 
 class OG_Preview_Core {
     
-    public function __construct() {
-        // Constructor
+    /**
+     * Single instance of the class
+     */
+    private static $instance = null;
+    
+    /**
+     * Get singleton instance
+     * 
+     * @return OG_Preview_Core
+     */
+    public static function get_instance() {
+        if (null === self::$instance) {
+            self::$instance = new self();
+        }
+        return self::$instance;
+    }
+    
+    /**
+     * Private constructor to prevent direct instantiation
+     */
+    private function __construct() {
+        // Private constructor for singleton
     }
     
     /**
