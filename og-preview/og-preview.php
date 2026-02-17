@@ -1,7 +1,6 @@
 <?php
 /**
  * Plugin Name: OG Preview
- * Plugin URI: https://www.sweetpeasoftware.co.uk
  * Description: Preview how your page will look when shared on social media based on Open Graph tags. Includes Elementor integration.
  * Version: 1.0.1
  * Requires at least: 5.0
