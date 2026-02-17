@@ -118,8 +118,7 @@ jobs:
         run: |
           NEW_VERSION="${{ steps.get_version.outputs.new_version }}"
 
-          git add og-preview.php readme.txt \
-            "Releases/OG Preview ${NEW_VERSION}.zip"
+          git add og-preview.php readme.txt Releases/
 
           # Check if there are changes to commit
           if git diff --staged --quiet; then
