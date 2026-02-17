@@ -31,22 +31,11 @@
         
         if (postImageDiv) {
             featuredImageObserver = new MutationObserver(function(mutations) {
-                var shouldRefresh = false;
-                
-                mutations.forEach(function(mutation) {
-                    // Check if the thumbnail was added, removed, or changed
-                    if (mutation.type === 'childList' || mutation.type === 'attributes') {
-                        shouldRefresh = true;
-                    }
-                });
-                
-                if (shouldRefresh) {
-                    // Add a small delay to ensure the thumbnail ID is saved
-                    clearTimeout(refreshTimeout);
-                    refreshTimeout = setTimeout(function() {
-                        refreshPreview();
-                    }, 1000);
-                }
+                // Add a small delay to ensure the thumbnail ID is saved
+                clearTimeout(refreshTimeout);
+                refreshTimeout = setTimeout(function() {
+                    refreshPreview();
+                }, 1000);
             });
             
             // Observe changes to the featured image container
