@@ -137,7 +137,35 @@ class OG_Preview_Core {
         }
         
         // Fallback to trimmed content
-        return wp_trim_words(strip_tags($post->post_content), 30);
+        return wp_trim_words($this->clean_content_for_description($post->post_content), 30);
+    }
+    
+    /**
+     * Clean content for description by removing unwanted elements
+     * 
+     * @param string $content Post content
+     * @return string Cleaned content
+     */
+    private function clean_content_for_description($content) {
+        // Remove style tags and their contents
+        $content = preg_replace('/<style\b[^>]*>.*?<\/style>/is', '', $content);
+        
+        // Remove script tags and their contents
+        $content = preg_replace('/<script\b[^>]*>.*?<\/script>/is', '', $content);
+        
+        // Remove head tags and their contents
+        $content = preg_replace('/<head\b[^>]*>.*?<\/head>/is', '', $content);
+        
+        // Strip remaining HTML tags
+        $content = strip_tags($content);
+        
+        // Remove excessive whitespace
+        $content = preg_replace('/\s+/', ' ', $content);
+        
+        // Trim
+        $content = trim($content);
+        
+        return $content;
     }
     
     /**
