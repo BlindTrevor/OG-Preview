@@ -62,7 +62,7 @@ class OG_Preview_Elementor {
         ?>
         <div id="og-preview-elementor-panel" style="display:none;">
             <div class="og-preview-elementor-header">
-                <h3><?php _e('Social Media Preview', 'og-preview'); ?></h3>
+                <h3><?php esc_html_e('Social Media Preview', 'OG-Preview'); ?></h3>
                 <button class="og-preview-close" type="button">&times;</button>
             </div>
             
@@ -77,21 +77,21 @@ class OG_Preview_Elementor {
             <div class="og-preview-content">
                 <?php foreach ($platforms as $platform): ?>
                     <div class="og-preview-platform" data-platform="<?php echo esc_attr($platform); ?>">
-                        <?php echo OG_Preview_Renderer::render_platform_preview($platform, $og_tags); ?>
+                        <?php echo wp_kses_post(OG_Preview_Renderer::render_platform_preview($platform, $og_tags)); ?>
                     </div>
                 <?php endforeach; ?>
             </div>
             
             <div class="og-preview-refresh">
                 <button type="button" class="button og-preview-refresh-btn">
-                    <?php _e('Refresh Preview', 'og-preview'); ?>
+                    <?php esc_html_e('Refresh Preview', 'OG-Preview'); ?>
                 </button>
             </div>
         </div>
         
-        <button id="og-preview-elementor-trigger" type="button" title="<?php _e('Social Media Preview', 'og-preview'); ?>">
+        <button id="og-preview-elementor-trigger" type="button" title="<?php esc_attr_e('Social Media Preview', 'OG-Preview'); ?>">
             <i class="eicon-share" aria-hidden="true"></i>
-            <span class="elementor-screen-only"><?php _e('Social Media Preview', 'og-preview'); ?></span>
+            <span class="elementor-screen-only"><?php esc_html_e('Social Media Preview', 'OG-Preview'); ?></span>
         </button>
         <?php
     }

@@ -53,7 +53,7 @@ class OG_Preview_Renderer {
                 </div>
             <?php endif; ?>
             <div class="og-preview-details">
-                <div class="og-preview-domain"><?php echo esc_html(parse_url($og_tags['url'], PHP_URL_HOST)); ?></div>
+                <div class="og-preview-domain"><?php echo esc_html(wp_parse_url($og_tags['url'], PHP_URL_HOST)); ?></div>
                 <div class="og-preview-title"><?php echo esc_html($og_tags['title']); ?></div>
                 <div class="og-preview-description"><?php echo esc_html($og_tags['description']); ?></div>
             </div>
@@ -80,7 +80,7 @@ class OG_Preview_Renderer {
             <div class="og-preview-details">
                 <div class="og-preview-title"><?php echo esc_html($og_tags['title']); ?></div>
                 <div class="og-preview-description"><?php echo esc_html($og_tags['description']); ?></div>
-                <div class="og-preview-domain"><?php echo esc_html(parse_url($og_tags['url'], PHP_URL_HOST)); ?></div>
+                <div class="og-preview-domain"><?php echo esc_html(wp_parse_url($og_tags['url'], PHP_URL_HOST)); ?></div>
             </div>
         </div>
         <?php
@@ -128,7 +128,7 @@ class OG_Preview_Renderer {
             <?php endif; ?>
             <div class="og-preview-details">
                 <div class="og-preview-title"><?php echo esc_html($og_tags['title']); ?></div>
-                <div class="og-preview-domain"><?php echo esc_html(parse_url($og_tags['url'], PHP_URL_HOST)); ?></div>
+                <div class="og-preview-domain"><?php echo esc_html(wp_parse_url($og_tags['url'], PHP_URL_HOST)); ?></div>
             </div>
         </div>
         <?php

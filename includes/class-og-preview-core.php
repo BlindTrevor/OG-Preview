@@ -163,7 +163,7 @@ class OG_Preview_Core {
             $content = preg_replace('/<head[^>]*>.*?<\/head>/is', '', $content);
             
             // Strip remaining HTML tags
-            $content = strip_tags($content);
+            $content = wp_strip_all_tags($content);
         }
         
         // Remove excessive whitespace

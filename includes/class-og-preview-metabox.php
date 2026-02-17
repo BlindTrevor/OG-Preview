@@ -33,7 +33,7 @@ class OG_Preview_Metabox {
         foreach ($post_types as $post_type) {
             add_meta_box(
                 'og-preview-metabox',
-                __('Social Media Preview', 'og-preview'),
+                __('Social Media Preview', 'OG-Preview'),
                 array($this, 'render_meta_box'),
                 $post_type,
                 'side',
@@ -92,14 +92,14 @@ class OG_Preview_Metabox {
             <div class="og-preview-content">
                 <?php foreach ($platforms as $platform): ?>
                     <div class="og-preview-platform" data-platform="<?php echo esc_attr($platform); ?>">
-                        <?php echo $this->render_platform_preview($platform, $og_tags); ?>
+                        <?php echo wp_kses_post($this->render_platform_preview($platform, $og_tags)); ?>
                     </div>
                 <?php endforeach; ?>
             </div>
             
             <div class="og-preview-refresh">
                 <button type="button" class="button og-preview-refresh-btn">
-                    <?php _e('Refresh Preview', 'og-preview'); ?>
+                    <?php esc_html_e('Refresh Preview', 'OG-Preview'); ?>
                 </button>
             </div>
         </div>
@@ -125,7 +125,7 @@ class OG_Preview_Metabox {
     public function ajax_get_preview() {
         check_ajax_referer('og_preview_nonce', 'nonce');
         
-        $post_id = intval($_POST['post_id']);
+        $post_id = isset($_POST['post_id']) ? intval($_POST['post_id']) : 0;
         
         if (!$post_id) {
             wp_send_json_error('Invalid post ID');
