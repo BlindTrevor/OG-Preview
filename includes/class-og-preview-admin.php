@@ -72,7 +72,7 @@ class OG_Preview_Admin {
         
         foreach ($available_platforms as $key => $label) {
             echo '<label style="display: block; margin-bottom: 5px;">';
-            echo '<input type="checkbox" name="og_preview_platforms[]" value="' . esc_attr($key) . '" ' . checked(in_array($key, $platforms), true, false) . '> ';
+            echo '<input type="checkbox" name="og_preview_platforms[]" value="' . esc_attr($key) . '" ' . checked(true, in_array($key, $platforms), false) . '> ';
             echo esc_html($label);
             echo '</label>';
         }
