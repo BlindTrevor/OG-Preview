@@ -24,6 +24,7 @@ define('OG_PREVIEW_PLUGIN_URL', plugin_dir_url(__FILE__));
 
 // Include required files
 require_once OG_PREVIEW_PLUGIN_DIR . 'includes/class-og-preview-core.php';
+require_once OG_PREVIEW_PLUGIN_DIR . 'includes/class-og-preview-renderer.php';
 require_once OG_PREVIEW_PLUGIN_DIR . 'includes/class-og-preview-admin.php';
 require_once OG_PREVIEW_PLUGIN_DIR . 'includes/class-og-preview-metabox.php';
 require_once OG_PREVIEW_PLUGIN_DIR . 'includes/class-og-preview-elementor.php';

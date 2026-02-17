@@ -69,12 +69,9 @@ class OG_Preview_Elementor {
             </div>
             
             <div class="og-preview-content">
-                <?php
-                $metabox = new OG_Preview_Metabox();
-                foreach ($platforms as $platform):
-                ?>
+                <?php foreach ($platforms as $platform): ?>
                     <div class="og-preview-platform" data-platform="<?php echo esc_attr($platform); ?>">
-                        <?php echo $this->render_platform_preview($platform, $og_tags); ?>
+                        <?php echo OG_Preview_Renderer::render_platform_preview($platform, $og_tags); ?>
                     </div>
                 <?php endforeach; ?>
             </div>
@@ -91,19 +88,5 @@ class OG_Preview_Elementor {
             <span class="elementor-screen-only"><?php _e('Social Media Preview', 'og-preview'); ?></span>
         </button>
         <?php
-    }
-    
-    /**
-     * Render platform preview
-     */
-    private function render_platform_preview($platform, $og_tags) {
-        $metabox = new OG_Preview_Metabox();
-        
-        // Use reflection to access private method
-        $reflection = new ReflectionClass($metabox);
-        $method = $reflection->getMethod('render_platform_preview');
-        $method->setAccessible(true);
-        
-        return $method->invoke($metabox, $platform, $og_tags);
     }
 }
