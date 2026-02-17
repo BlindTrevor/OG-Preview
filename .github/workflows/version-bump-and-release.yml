@@ -1,0 +1,138 @@
+---
+name: Version Bump and Release
+
+'on':
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - 'Releases/**'
+      - '.github/**'
+
+jobs:
+  version-bump-and-release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email \
+            "github-actions[bot]@users.noreply.github.com"
+
+      - name: Get current version
+        id: get_version
+        run: |
+          # Extract version from og-preview.php
+          CURRENT_VERSION=$(grep -oP \
+            "(?<=Version: )[0-9]+\.[0-9]+\.[0-9]+" \
+            og-preview.php | head -1)
+          echo "Current version: $CURRENT_VERSION"
+          echo "current_version=$CURRENT_VERSION" >> $GITHUB_OUTPUT
+
+          # Split version into parts
+          IFS='.' read -r MAJOR MINOR PATCH <<< "$CURRENT_VERSION"
+
+          # Increment patch version
+          NEW_PATCH=$((PATCH + 1))
+          NEW_VERSION="${MAJOR}.${MINOR}.${NEW_PATCH}"
+
+          echo "New version: $NEW_VERSION"
+          echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
+
+      - name: Check if release already exists
+        id: check_release
+        run: |
+          NEW_VERSION="${{ steps.get_version.outputs.new_version }}"
+          RELEASE_FILE="Releases/OG Preview ${NEW_VERSION}.zip"
+
+          if [ -f "$RELEASE_FILE" ]; then
+            echo "Release file already exists: $RELEASE_FILE"
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "Release file does not exist, proceeding with creation"
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Update version in files
+        if: steps.check_release.outputs.exists == 'false'
+        run: |
+          NEW_VERSION="${{ steps.get_version.outputs.new_version }}"
+
+          # Update version in og-preview.php header
+          sed -i "s/^\( \* Version: \).*/\1$NEW_VERSION/" og-preview.php
+
+          # Update version in OG_PREVIEW_VERSION constant
+          sed -i "s/^define('OG_PREVIEW_VERSION', '[^']*');/define('OG_PREVIEW_VERSION', '$NEW_VERSION');/" og-preview.php
+
+          # Update version in readme.txt stable tag
+          sed -i "s/^Stable tag: .*/Stable tag: $NEW_VERSION/" readme.txt
+
+          echo "Version updated to $NEW_VERSION in all files"
+
+      - name: Create Releases directory
+        if: steps.check_release.outputs.exists == 'false'
+        run: |
+          mkdir -p Releases
+
+      - name: Create plugin zip
+        if: steps.check_release.outputs.exists == 'false'
+        run: |
+          NEW_VERSION="${{ steps.get_version.outputs.new_version }}"
+
+          # Create a temporary directory for the plugin
+          mkdir -p /tmp/og-preview
+
+          # Copy plugin files
+          # (exclude git, github, releases, and other non-plugin files)
+          rsync -av \
+            --exclude='.git' \
+            --exclude='.github' \
+            --exclude='Releases' \
+            --exclude='.gitignore' \
+            --exclude='*.md' \
+            --exclude='tests' \
+            --exclude='node_modules' \
+            --exclude='.DS_Store' \
+            --exclude='Thumbs.db' \
+            ./ /tmp/og-preview/
+
+          # Create the zip file
+          cd /tmp
+          zip -r "OG Preview ${NEW_VERSION}.zip" og-preview/
+
+          # Move the zip to the Releases directory
+          mv "OG Preview ${NEW_VERSION}.zip" "$GITHUB_WORKSPACE/Releases/"
+
+          echo "Created release zip: OG Preview ${NEW_VERSION}.zip"
+
+      - name: Commit and push changes
+        if: steps.check_release.outputs.exists == 'false'
+        run: |
+          NEW_VERSION="${{ steps.get_version.outputs.new_version }}"
+
+          git add og-preview.php readme.txt \
+            "Releases/OG Preview ${NEW_VERSION}.zip"
+
+          # Check if there are changes to commit
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m \
+              "Bump version to ${NEW_VERSION} and create release"
+            git push origin main
+            echo "Changes committed and pushed"
+          fi
+
+      - name: Skip release creation
+        if: steps.check_release.outputs.exists == 'true'
+        run: |
+          echo "Skipping release creation - already exists for this version"
