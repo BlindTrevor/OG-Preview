@@ -2,6 +2,18 @@
 
 All notable changes to the OG Preview plugin will be documented in this file.
 
+## [1.0.1] - 2026-02-17
+
+### Fixed
+- Fixed OG description showing CSS styles and JavaScript code instead of clean text content
+- Description extraction now properly removes `<style>`, `<script>`, and `<head>` tags and their contents
+- Uses WordPress's `wp_strip_all_tags()` function for robust content cleaning
+- Fallback regex implementation for non-WordPress environments
+
+### Changed
+- Improved `clean_content_for_description()` method to use safer WordPress core functions
+- Updated regex patterns to use non-greedy matching to avoid performance issues
+
 ## [1.0.0] - 2026-02-17
 
 ### Added
