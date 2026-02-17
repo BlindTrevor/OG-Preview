@@ -1,4 +1,4 @@
-# OG Preview - WordPress Plugin
+# OG Preview
 
 A WordPress plugin that provides a live preview of how your pages and posts will look when shared on social media platforms, based on Open Graph (OG) tags. Includes seamless integration with Elementor page builder.
 
