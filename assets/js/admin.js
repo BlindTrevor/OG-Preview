@@ -6,6 +6,9 @@
     'use strict';
     
     $(document).ready(function() {
+        // Shared timeout for debounced refresh operations
+        var refreshTimeout;
+        
         // Initialize tabs
         initTabs();
         
@@ -16,7 +19,6 @@
         });
         
         // Auto-refresh on title/content changes (debounced)
-        var refreshTimeout;
         $('#title, #content').on('input', function() {
             clearTimeout(refreshTimeout);
             refreshTimeout = setTimeout(function() {
