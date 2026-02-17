@@ -2,7 +2,7 @@
 /**
  * Plugin Name: OG Preview
  * Description: Preview how your page will look when shared on social media based on Open Graph tags. Includes Elementor integration.
- * Version: 1.0.2
+ * Version: 1.0.3
  * Requires at least: 5.0
  * Requires PHP: 7.0
  * Author: Sweet Pea Software
@@ -19,7 +19,7 @@ if (!defined('ABSPATH')) {
 }
 
 // Define plugin constants
-define('OG_PREVIEW_VERSION', '1.0.2');
+define('OG_PREVIEW_VERSION', '1.0.3');
 define('OG_PREVIEW_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('OG_PREVIEW_PLUGIN_URL', plugin_dir_url(__FILE__));
 
