@@ -158,19 +158,19 @@ Each platform has a slightly different card design, which the preview accurately
 
 The meta box appears in the sidebar of the WordPress post/page editor, showing real-time social media previews for each platform.
 
-![Classic Editor Preview](assets/screenshots/classic-editor-preview.svg)
+<img width="258" height="615" alt="image" src="https://github.com/user-attachments/assets/507c0c0d-7de7-421c-924a-56ecb9bcc7cd" />
 
 ### Preview in Elementor
 
 A floating button provides easy access to the preview panel without leaving the Elementor interface.
 
-![Elementor Preview](assets/screenshots/elementor-preview.svg)
+<img width="74" height="104" alt="image" src="https://github.com/user-attachments/assets/e6856eeb-5532-4041-859a-122eeceae0f6" />
 
 ### Settings Page
 
 Configure which social media platforms to preview from the WordPress admin.
 
-![Settings Page](assets/screenshots/settings-page.svg)
+<img width="388" height="540" alt="image" src="https://github.com/user-attachments/assets/1a4f7a4a-572b-4045-853b-04aad5d8a913" />
 
 ## Frequently Asked Questions
 
