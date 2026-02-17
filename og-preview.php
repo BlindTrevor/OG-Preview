@@ -6,8 +6,8 @@
  * Version: 1.0.1
  * Requires at least: 5.0
  * Requires PHP: 7.0
- * Author: BlindTrevor
- * Author URI: https://github.com/BlindTrevor
+ * Author: Sweet Pea Software
+ * Author URI: https://www.sweetpeasoftware.co.uk
  * License: GPL v2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: og-preview
