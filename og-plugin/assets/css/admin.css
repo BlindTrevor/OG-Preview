@@ -1,0 +1,246 @@
+/* OG Preview Admin Styles */
+
+#og-preview-container {
+    margin-top: 10px;
+}
+
+.og-preview-tabs {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.og-preview-tab {
+    padding: 8px 12px;
+    background: #f0f0f1;
+    border: 1px solid #c3c4c7;
+    cursor: pointer;
+    font-size: 13px;
+    border-radius: 3px;
+    transition: all 0.2s;
+}
+
+.og-preview-tab:hover {
+    background: #e0e0e1;
+}
+
+.og-preview-tab.active {
+    background: #2271b1;
+    color: #fff;
+    border-color: #2271b1;
+}
+
+.og-preview-content {
+    position: relative;
+}
+
+.og-preview-platform {
+    display: none;
+}
+
+.og-preview-platform.active {
+    display: block;
+}
+
+.og-preview-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #fff;
+    margin-bottom: 15px;
+}
+
+/* Facebook Preview */
+.og-preview-facebook .og-preview-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    background: #f0f2f5;
+}
+
+.og-preview-facebook .og-preview-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.og-preview-facebook .og-preview-details {
+    padding: 12px;
+    background: #f0f2f5;
+}
+
+.og-preview-facebook .og-preview-domain {
+    font-size: 12px;
+    color: #606770;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+.og-preview-facebook .og-preview-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1c1e21;
+    margin-bottom: 4px;
+    line-height: 1.3;
+}
+
+.og-preview-facebook .og-preview-description {
+    font-size: 14px;
+    color: #606770;
+    line-height: 1.4;
+}
+
+/* Twitter Preview */
+.og-preview-twitter .og-preview-image {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    background: #f7f9f9;
+}
+
+.og-preview-twitter .og-preview-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.og-preview-twitter .og-preview-details {
+    padding: 12px;
+    border-top: 1px solid #e1e8ed;
+}
+
+.og-preview-twitter .og-preview-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #14171a;
+    margin-bottom: 4px;
+    line-height: 1.3;
+}
+
+.og-preview-twitter .og-preview-description {
+    font-size: 14px;
+    color: #657786;
+    line-height: 1.4;
+    margin-bottom: 4px;
+}
+
+.og-preview-twitter .og-preview-domain {
+    font-size: 12px;
+    color: #657786;
+    text-transform: lowercase;
+}
+
+/* WhatsApp Preview */
+.og-preview-whatsapp {
+    display: flex;
+    background: #fff;
+    border: 1px solid #d1d7db;
+}
+
+.og-preview-whatsapp .og-preview-details {
+    flex: 1;
+    padding: 10px;
+    min-width: 0;
+}
+
+.og-preview-whatsapp .og-preview-site {
+    font-size: 11px;
+    color: #667781;
+    margin-bottom: 3px;
+}
+
+.og-preview-whatsapp .og-preview-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: #111b21;
+    line-height: 1.3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.og-preview-whatsapp .og-preview-image {
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+    overflow: hidden;
+    background: #f0f2f5;
+}
+
+.og-preview-whatsapp .og-preview-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* LinkedIn Preview */
+.og-preview-linkedin .og-preview-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    background: #f3f6f8;
+}
+
+.og-preview-linkedin .og-preview-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.og-preview-linkedin .og-preview-details {
+    padding: 12px;
+    background: #fff;
+}
+
+.og-preview-linkedin .og-preview-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #000000;
+    margin-bottom: 4px;
+    line-height: 1.3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.og-preview-linkedin .og-preview-domain {
+    font-size: 12px;
+    color: #666666;
+}
+
+/* Refresh Button */
+.og-preview-refresh {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.og-preview-refresh-btn {
+    width: 100%;
+}
+
+/* Loading State */
+.og-preview-loading {
+    text-align: center;
+    padding: 20px;
+}
+
+.og-preview-loading::after {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #2271b1;
+    border-radius: 50%;
+    animation: og-preview-spin 1s linear infinite;
+}
+
+@keyframes og-preview-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
