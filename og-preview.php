@@ -1,9 +1,9 @@
 <?php
 /**
  * Plugin Name: OG Preview
- * Plugin URI: https://github.com/BlindTrevor/OG-Preview
+ * Plugin URI: https://www.sweetpeasoftware.co.uk
  * Description: Preview how your page will look when shared on social media based on Open Graph tags. Includes Elementor integration.
- * Version: 1.0.1
+ * Version: 1.0.0
  * Requires at least: 5.0
  * Requires PHP: 7.0
  * Author: Sweet Pea Software
