@@ -10,7 +10,7 @@
  * Author URI: https://www.sweetpeasoftware.co.uk
  * License: GPL v2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain: OG-Preview
+ * Text Domain: og-preview
  * Domain Path: /languages
  */
 
