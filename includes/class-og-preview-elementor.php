@@ -46,7 +46,8 @@ class OG_Preview_Elementor {
         wp_localize_script('og-preview-elementor', 'ogPreview', array(
             'ajax_url' => admin_url('admin-ajax.php'),
             'nonce' => wp_create_nonce('og_preview_nonce'),
-            'post_id' => get_the_ID()
+            'post_id' => get_the_ID(),
+            'debug' => defined('WP_DEBUG') && WP_DEBUG
         ));
     }
     

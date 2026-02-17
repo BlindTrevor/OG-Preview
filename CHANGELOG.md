@@ -13,7 +13,7 @@ All notable changes to the OG Preview plugin will be documented in this file.
 ### Changed
 - Improved `clean_content_for_description()` method to use safer WordPress core functions
 - Updated regex patterns to use non-greedy matching to avoid performance issues
-- Removed console.error statements from JavaScript for production readiness
+- Implemented conditional debug logging in JavaScript that respects WP_DEBUG setting
 - Updated .gitignore to exclude development documentation and test files from production builds
 
 ## [1.0.0] - 2026-02-17

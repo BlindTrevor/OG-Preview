@@ -67,7 +67,8 @@ class OG_Preview_Metabox {
         
         wp_localize_script('og-preview-admin', 'ogPreview', array(
             'ajax_url' => admin_url('admin-ajax.php'),
-            'nonce' => wp_create_nonce('og_preview_nonce')
+            'nonce' => wp_create_nonce('og_preview_nonce'),
+            'debug' => defined('WP_DEBUG') && WP_DEBUG
         ));
     }
     

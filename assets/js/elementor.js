@@ -101,7 +101,10 @@
                 }
             },
             error: function() {
-                // Silent error handling - AJAX refresh failed
+                // Only log errors when WordPress debug mode is enabled
+                if (ogPreview.debug) {
+                    console.error('OG Preview: Failed to refresh preview');
+                }
             }
         });
     }
