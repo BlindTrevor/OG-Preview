@@ -47,6 +47,30 @@
             e.preventDefault();
             refreshPreview();
         });
+        
+        // Watch for featured image changes using MutationObserver
+        // This ensures the preview updates when the featured image is actually set/changed
+        var featuredImageObserver = null;
+        var postImageDiv = document.getElementById('postimagediv');
+        var refreshTimeout;
+        
+        if (postImageDiv) {
+            featuredImageObserver = new MutationObserver(function(mutations) {
+                // Add a small delay to ensure the thumbnail ID is saved
+                clearTimeout(refreshTimeout);
+                refreshTimeout = setTimeout(function() {
+                    refreshPreview();
+                }, 1000);
+            });
+            
+            // Observe changes to the featured image container
+            featuredImageObserver.observe(postImageDiv, {
+                childList: true,
+                subtree: true,
+                attributes: true,
+                attributeFilter: ['class']
+            });
+        }
     }
     
     /**
