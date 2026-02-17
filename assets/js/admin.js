@@ -24,19 +24,39 @@
             }, 2000);
         });
         
-        // Auto-refresh when featured image changes
-        $(document).on('click', '#set-post-thumbnail', function() {
-            setTimeout(function() {
-                refreshPreview();
-            }, 500);
-        });
+        // Watch for featured image changes using MutationObserver
+        // This ensures the preview updates when the featured image is actually set/changed
+        var featuredImageObserver = null;
+        var postImageDiv = document.getElementById('postimagediv');
         
-        // Auto-refresh when featured image is removed
-        $(document).on('click', '#remove-post-thumbnail', function() {
-            setTimeout(function() {
-                refreshPreview();
-            }, 500);
-        });
+        if (postImageDiv) {
+            featuredImageObserver = new MutationObserver(function(mutations) {
+                var shouldRefresh = false;
+                
+                mutations.forEach(function(mutation) {
+                    // Check if the thumbnail was added, removed, or changed
+                    if (mutation.type === 'childList' || mutation.type === 'attributes') {
+                        shouldRefresh = true;
+                    }
+                });
+                
+                if (shouldRefresh) {
+                    // Add a small delay to ensure the thumbnail ID is saved
+                    clearTimeout(refreshTimeout);
+                    refreshTimeout = setTimeout(function() {
+                        refreshPreview();
+                    }, 1000);
+                }
+            });
+            
+            // Observe changes to the featured image container
+            featuredImageObserver.observe(postImageDiv, {
+                childList: true,
+                subtree: true,
+                attributes: true,
+                attributeFilter: ['class']
+            });
+        }
     });
     
     /**
