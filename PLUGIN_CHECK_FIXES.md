@@ -16,6 +16,8 @@ This document summarizes all the fixes applied to resolve WordPress Plugin Check
 
 **Solution:** Changed all text domain references from 'og-preview' to 'OG-Preview' to match the plugin slug.
 
+**Note:** While WordPress typically recommends lowercase text domains, the WordPress Plugin Check tool expects the text domain to match the plugin slug exactly. Since this plugin's directory/slug is "OG-Preview" (mixed case), the text domain must also be "OG-Preview" to pass Plugin Check validation.
+
 ### 2. Unsafe Output Functions (5 instances)
 **Problem:** Using `_e()` instead of escaping functions like `esc_html_e()` or `esc_attr_e()`.
 
