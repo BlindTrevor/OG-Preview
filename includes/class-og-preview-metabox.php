@@ -129,10 +129,10 @@ class OG_Preview_Metabox {
         check_ajax_referer('og_preview_nonce', 'nonce');
         
         if (!isset($_POST['post_id'])) {
-            wp_send_json_error('Invalid post ID');
+            wp_send_json_error('Missing post ID');
         }
         
-        $post_id = intval($_POST['post_id']);
+        $post_id = absint($_POST['post_id']);
         
         if (!$post_id) {
             wp_send_json_error('Invalid post ID');

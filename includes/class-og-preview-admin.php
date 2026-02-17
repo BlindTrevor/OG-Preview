@@ -71,9 +71,9 @@ class OG_Preview_Admin {
         );
         
         foreach ($available_platforms as $key => $label) {
-            $checked = checked(true, in_array($key, $platforms), false);
             echo '<label style="display: block; margin-bottom: 5px;">';
-            echo '<input type="checkbox" name="og_preview_platforms[]" value="' . esc_attr($key) . '" ' . $checked . '> ';
+            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- checked() returns escaped HTML
+            echo '<input type="checkbox" name="og_preview_platforms[]" value="' . esc_attr($key) . '" ' . checked(true, in_array($key, $platforms), false) . '> ';
             echo esc_html($label);
             echo '</label>';
         }
