@@ -94,7 +94,7 @@
                 }
             },
             error: function() {
-                console.error('Failed to refresh OG preview');
+                // Silent error handling - AJAX refresh failed
             },
             complete: function() {
                 $container.removeClass('og-preview-loading');

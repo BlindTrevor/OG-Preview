@@ -23,3 +23,15 @@ node_modules/
 # Build artifacts
 dist/
 build/
+
+# Development documentation (excluded from production)
+ARCHITECTURE.md
+BUGFIX_DETAILS.md
+DEVELOPER.md
+PLUGIN_HEADER_UPDATE.md
+SUMMARY.md
+VISUAL_FIX_DEMO.md
+VISUAL_GUIDE.md
+
+# Development tests
+tests/
